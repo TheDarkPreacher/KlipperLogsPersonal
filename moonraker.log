@@ -1,0 +1,247 @@
+-------------------- Log Start | Wed Dec 31 06:15:43 2025 --------------------
+platform: Linux-6.12.47+rpt-rpi-v8-aarch64-with-glibc2.41
+data_path: /home/enderklipper/printer_data
+is_default_data_path: False
+config_file: /home/enderklipper/printer_data/config/moonraker.conf
+backup_config: /home/enderklipper/printer_data/config/.moonraker.conf.bkp
+startup_warnings: []
+verbose: False
+debug: False
+asyncio_debug: False
+is_backup_config: False
+is_python_package: False
+instance_uuid: 68a93d00e6074c72ab1f880e21e84cc7
+unix_socket_path: /home/enderklipper/printer_data/comms/moonraker.sock
+structured_logging: False
+software_version: v0.9.3-130-g5b92e52
+git_branch: master
+git_remote: origin
+git_repo_url: https://github.com/Arksine/moonraker
+modified_files: []
+unofficial_components: []
+log_file: /home/enderklipper/printer_data/logs/moonraker.log
+python_version: 3.13.5 (main, Jun 25 2025, 18:55:22) [GCC 14.2.0]
+launch_args: /home/enderklipper/moonraker-env/bin/python /home/enderklipper/moonraker/moonraker/moonraker.py -d /home/enderklipper/printer_data
+msgspec_enabled: True
+uvloop_enabled: True
+
+#################### Moonraker Configuration ####################
+
+[server]
+host = 0.0.0.0
+port = 7125
+klippy_uds_address = /home/enderklipper/printer_data/comms/klippy.sock
+
+[authorization]
+trusted_clients = 
+	192.168.0.0/16
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FC00::/7
+	FE80::/10
+	::1/128
+cors_domains = 
+	*.lan
+	*.local
+	*://localhost
+	*://localhost:*
+	*://my.mainsail.xyz
+	*://app.fluidd.xyz
+
+[octoprint_compat]
+
+[history]
+
+[update_manager]
+channel = dev
+refresh_interval = 168
+
+[update_manager mainsail]
+path = /home/enderklipper/mainsail
+repo = mainsail-crew/mainsail
+channel = stable
+type = web
+persistent_files = 
+	config.json
+
+[update_manager mainsail-config]
+managed_services = klipper
+origin = https://github.com/mainsail-crew/mainsail-config.git
+path = /home/enderklipper/mainsail-config
+primary_branch = master
+type = git_repo
+
+[update_manager crowsnest]
+type = git_repo
+path = ~/crowsnest
+origin = https://github.com/mainsail-crew/crowsnest.git
+managed_services = crowsnest
+install_script = tools/pkglist.sh
+
+[update_manager octoapp]
+type = git_repo
+channel = beta
+primary_branch = release
+path = /home/enderklipper/octoapp
+origin = https://github.com/crysxd/OctoApp-Plugin.git
+env = /home/enderklipper/octoapp-env/bin/python
+requirements = requirements.txt
+install_script = install.sh
+managed_services = 
+	octoapp
+
+[announcements]
+subscriptions = 
+	octoapp.
+
+[file_manager]
+enable_object_processing = True
+
+[update_manager Klipper-Adaptive-Meshing-Purging]
+type = git_repo
+channel = dev
+path = ~/Klipper-Adaptive-Meshing-Purging
+origin = https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging.git
+managed_services = klipper
+primary_branch = main
+
+#################################################################
+All Configuration Files:
+/home/enderklipper/printer_data/config/moonraker.conf
+/home/enderklipper/printer_data/config/octoapp-system.cfg
+#################################################################
+Loading Sqlite database provider. Sqlite Version: 3.46.1
+Unsafe Shutdown Count: 2
+
+System Info:
+
+***python***
+  version: (3, 13, 5, 'final', 0)
+  version_string: 3.13.5 (main, Jun 25 2025, 18:55:22) [GCC 14.2.0]
+
+***cpu_info***
+  cpu_count: 4
+  bits: 64bit
+  processor: aarch64
+  cpu_desc: 
+  serial_number: bcb8e5e5
+  hardware_desc: 
+  model: Raspberry Pi 3 Model B Rev 1.2
+  total_memory: 927784
+  memory_units: kB
+
+***sd_info***
+  manufacturer_id: 9f
+  manufacturer: Unknown
+  oem_id: 5449
+  product_name: 00000
+  product_revision: 0.0
+  serial_number: 0000946d
+  manufacturer_date: 11/2020
+  capacity: 7.4 GiB
+  total_bytes: 7929331712
+
+***distribution***
+  name: Debian GNU/Linux 13 (trixie)
+  id: debian
+  version: 13
+  version_parts: {'major': '13', 'minor': '', 'build_number': ''}
+  like: 
+  codename: trixie
+  release_info: {}
+  kernel_version: 6.12.47+rpt-rpi-v8
+
+***virtualization***
+  virt_type: none
+  virt_identifier: none
+
+***network***
+
+***canbus***
+
+***Allowed Services***
+  klipper_mcu
+  webcamd
+  MoonCord
+  KlipperScreen
+  moonraker-telegram-bot
+  moonraker-obico
+  sonar
+  crowsnest
+  octoeverywhere
+  ratos-configurator
+  octoapp
+Found libcamera Python module, version: v0.6.0+rpt20251202
+
+Systemd unit moonraker.service:
+unit_name: moonraker.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['system.slice', '-.mount', 'network-online.target', 'sysinit.target']
+**After=['sysinit.target', 'system.slice', 'basic.target', '-.mount', 'network-online.target', 'systemd-journald.socket']
+**SupplementaryGroups=['moonraker-admin']
+**EnvironmentFiles=/home/enderklipper/printer_data/systemd/moonraker.env
+**ExecStart=/home/enderklipper/moonraker-env/bin/python $MOONRAKER_ARGS
+**WorkingDirectory=/home/enderklipper/moonraker
+**FragmentPath=/etc/systemd/system/moonraker.service
+**Description=API Server for Klipper SV1
+**User=enderklipper
+CPU Throttled Flags: ['Under-Voltage Detected', 'Currently Throttled', 'Previously Under-Volted', 'Previously Throttled']
+
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['system.slice', 'sysinit.target', '-.mount']
+**After=['-.mount', 'systemd-journald.socket', 'sysinit.target', 'system.slice', 'basic.target', 'network-online.target']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/enderklipper/printer_data/systemd/klipper.env
+**ExecStart=/home/enderklipper/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/enderklipper/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=enderklipper
+Git Repo moonraker: No warnings detected
+Git Repo klipper: Warnings detected:
+  Unofficial remote url: https://github.com/0xD34D/klipper_ender3_v3_se
+Git Repo mainsail-config: No warnings detected
+Git Repo crowsnest: No warnings detected
+Git Repo octoapp: No warnings detected
+Git Repo Klipper-Adaptive-Meshing-Purging: No warnings detected
+Klipper Version: v0.13.0-448-g51dcb09d
+2025-12-31 00:15:43,861 [announcements.py:_fetch_moonlight()] - Failed to update subscription 'octoapp.': HTTP 404: Not Found
+2025-12-31 00:29:11,407 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.68.101
+2025-12-31 00:29:11,410 [application.py:log_request()] - 101 GET /websocket (192.168.68.101) [_TRUSTED_USER_] 6.61ms
+2025-12-31 00:29:11,411 [websockets.py:open()] - Websocket Opened: ID: 548214596432, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0, Host Name: 192.168.68.68
+2025-12-31 00:29:11,418 [websockets.py:_handle_identify()] - Websocket 548214596432 Client Identified - Name: mainsail, Version: 2.16.1, Type: web
+2025-12-31 00:30:47,756 [websockets.py:on_close()] - Websocket Closed: ID: 548214596432 Close Code: None, Close Reason: None, Pong Time Elapsed: 26.23
+2025-12-31 00:31:41,514 [websockets.py:write_to_socket()] - Websocket closed while writing: 548216450064
+2025-12-31 00:31:41,865 [websockets.py:on_close()] - Websocket Closed: ID: 548216450064 Close Code: 1000, Close Reason: None, Pong Time Elapsed: 0.12
+2025-12-31 00:33:14,833 [application.py:log_request()] - 101 GET /websocket (192.168.68.134) [_TRUSTED_USER_] 4.05ms
+2025-12-31 00:33:14,833 [websockets.py:open()] - Websocket Opened: ID: 548214596432, Proxied: False, User Agent: HomeAssistant/2026.1.0b1 aiohttp/3.13.2 Python/3.13, Host Name: 192.168.68.68
+2025-12-31 00:33:15,715 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: machine.device_power.devices, Code: -32601, Message: Method not found
+2025-12-31 00:40:10,590 [websockets.py:on_close()] - Websocket Closed: ID: 548214596432 Close Code: None, Close Reason: None, Pong Time Elapsed: 15.71
+2025-12-31 00:40:38,308 [application.py:log_request()] - 101 GET /websocket (192.168.68.134) [_TRUSTED_USER_] 3.65ms
+2025-12-31 00:40:38,309 [websockets.py:open()] - Websocket Opened: ID: 548214596432, Proxied: False, User Agent: HomeAssistant/2026.1.0b1 aiohttp/3.13.2 Python/3.13, Host Name: 192.168.68.68
+2025-12-31 00:40:42,640 [common.py:build_error()] - JSON-RPC Request Error - Requested Method: machine.device_power.devices, Code: -32601, Message: Method not found
+2025-12-31 00:45:43,945 [announcements.py:_fetch_moonlight()] - Failed to update subscription 'octoapp.': HTTP 404: Not Found
+2025-12-31 01:15:43,773 [announcements.py:_fetch_moonlight()] - Failed to update subscription 'octoapp.': HTTP 404: Not Found
+2025-12-31 01:30:39,886 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.68.101
+2025-12-31 01:45:43,694 [announcements.py:_fetch_moonlight()] - Failed to update subscription 'octoapp.': HTTP 404: Not Found
+2025-12-31 02:15:44,113 [announcements.py:_fetch_moonlight()] - Failed to update subscription 'octoapp.': HTTP 404: Not Found
+2025-12-31 02:45:43,534 [announcements.py:_fetch_moonlight()] - Failed to update subscription 'octoapp.': HTTP 404: Not Found
+2025-12-31 03:15:43,590 [announcements.py:_fetch_moonlight()] - Failed to update subscription 'octoapp.': HTTP 404: Not Found
+2025-12-31 03:45:43,564 [announcements.py:_fetch_moonlight()] - Failed to update subscription 'octoapp.': HTTP 404: Not Found
+2025-12-31 04:15:43,655 [announcements.py:_fetch_moonlight()] - Failed to update subscription 'octoapp.': HTTP 404: Not Found
+2025-12-31 04:45:43,702 [announcements.py:_fetch_moonlight()] - Failed to update subscription 'octoapp.': HTTP 404: Not Found
+2025-12-31 05:15:43,688 [announcements.py:_fetch_moonlight()] - Failed to update subscription 'octoapp.': HTTP 404: Not Found
+2025-12-31 05:45:43,447 [announcements.py:_fetch_moonlight()] - Failed to update subscription 'octoapp.': HTTP 404: Not Found
+2025-12-31 06:10:06,637 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.68.101
+2025-12-31 06:10:06,640 [application.py:log_request()] - 101 GET /websocket (192.168.68.101) [_TRUSTED_USER_] 5.53ms
+2025-12-31 06:10:06,641 [websockets.py:open()] - Websocket Opened: ID: 548214594832, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0, Host Name: 192.168.68.68
+2025-12-31 06:10:06,649 [websockets.py:_handle_identify()] - Websocket 548214594832 Client Identified - Name: mainsail, Version: 2.16.1, Type: web
